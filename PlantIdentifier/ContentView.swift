@@ -46,6 +46,7 @@ struct ScanView: View {
     @State private var uiImageSelected: UIImage?
     
     @State private var result: String = "No Prediction Yet"
+    @State private var isShowCamera: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -70,6 +71,10 @@ struct ScanView: View {
                         Text("Choose Image")
                     }
                     
+                    Button("Choose from Camera") {
+                        isShowCamera = true
+                    }
+                    .buttonStyle(.borderedProminent)
                 }
                 
                 Text(result)
@@ -95,6 +100,9 @@ struct ScanView: View {
                         print("Failed Picker Image")
                     }
                 }
+            }
+            .fullScreenCover(isPresented: $isShowCamera) {
+                CameraView()
             }
         }
     }
