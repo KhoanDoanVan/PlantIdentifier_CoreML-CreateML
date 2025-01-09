@@ -10,6 +10,9 @@ import SwiftUI
 struct CameraView: View {
     
     @StateObject var camera = CameraModel()
+    @Binding var isShowCamera: Bool
+    
+    let handleAction: (_ uiImage: UIImage) -> ()
     
     var body: some View {
         ZStack {
@@ -49,9 +52,19 @@ struct CameraView: View {
                 
                 HStack {
                     if camera.isTaken {
-                        Text("Finished")
-                            .font(.largeTitle)
-                            .foregroundStyle(.red)
+                        Button {
+                            
+                            if let uiImage = camera.uiImage {
+                                handleAction(uiImage)
+                            }
+                            
+                            isShowCamera = false
+                        } label: {
+                            Text("Finished")
+                                .font(.system(size: 24))
+                                .bold()
+                                .foregroundStyle(Color.red)
+                        }
                     } else {
                         Button {
                             camera.takePicture()

@@ -102,7 +102,9 @@ struct ScanView: View {
                 }
             }
             .fullScreenCover(isPresented: $isShowCamera) {
-                CameraView()
+                CameraView(isShowCamera: $isShowCamera) { uiImageFromCamera in
+                    self.uiImageSelected = uiImageFromCamera
+                }
             }
         }
     }

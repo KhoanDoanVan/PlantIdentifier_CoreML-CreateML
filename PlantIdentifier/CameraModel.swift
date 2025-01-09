@@ -137,48 +137,6 @@ class CameraModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
         }
     }
     
-//    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: (any Error)?) {
-//        if error != nil {
-//            print("Error capturing photo: \(String(describing: error))")
-//            return
-//        }
-//        
-//        guard let imageData = photo.fileDataRepresentation() else {
-//            print("Failed to get image data representation.")
-//            return
-//        }
-//        
-//        self.pictureData = imageData  // Assuming pictureData is of type Data
-//        
-//        print("Original image data size: \(imageData.count) bytes")
-//        
-//        // Directly pass imageData to the crop function without base64 encoding/decoding
-//        if let croppedImage = cropCenterImage(from: imageData) {
-//            self.uiImage = croppedImage
-//            print("Cropped image size: \(croppedImage.size)")
-//        } else {
-//            print("Failed to crop the image.")
-//        }
-//    }
-    
-//    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: (any Error)?) {
-//        if error != nil {
-//            return
-//        }
-//        
-//        guard let imageData = photo.fileDataRepresentation() else { return }
-//        
-//        self.pictureData = imageData
-//        
-//        print(pictureData)
-//        
-//        if let imageData = Data(base64Encoded: pictureData),
-//           let croppedImage = cropCenterImage(from: imageData) {
-//            self.uiImage = croppedImage
-//            print("Cropped image size: \(croppedImage.size)")
-//        }
-//    }
-    
     func startSession() {
         DispatchQueue.global(qos: .background).async {
             self.session.startRunning()
